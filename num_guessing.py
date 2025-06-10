@@ -5,7 +5,7 @@ number_to_guess = random.randint(1, 100)
 
 # Tracking the number of guesses
 attempts = 0
-
+replay = True
 while True:
     user_guess = int(input("Guess a number between 1 and 100: "))
     attempts += 1
@@ -16,7 +16,14 @@ while True:
         print("Too high! Try again.")
     else:
         print(f"Congratulations! You've guessed the number {number_to_guess} in {attempts} attempts.")
-        break
+        replay = input("Do you want to play again? (yes/no): ").strip().lower()
+        if replay == 'yes':
+            number_to_guess = random.randint(1, 100)
+            attempts = 0
+            continue
+        else:
+            print("Thanks for playing!")
+            break
     # Provide hints at specific attempts
     if attempts >= 10:
         print(f"You've used all your attempts. The number was {number_to_guess}.")
